@@ -269,4 +269,53 @@ void PmergeMe::run(int argc, char **argv)
 		<< " elements with std::vector : " << (t2 - t1) << " us" << std::endl;
 	std::cout << "Time to process a range of " << deq.size()
 		<< " elements with std::deque  : " << (t4 - t3) << " us" << std::endl;
+
+	// --- Comment out the block below to disable std::sort / std::stable_sort comparison ---
+	// /*
+	{
+		std::vector<int> vecCopy(vec.begin(), vec.end());
+		std::deque<int> deqCopy(deq.begin(), deq.end());
+
+		// Re-parse unsorted input for fair comparison
+		vecCopy.clear();
+		deqCopy.clear();
+		for (int i = 1; i < argc; i++)
+		{
+			std::stringstream ss(argv[i]);
+			int n;
+			ss >> n;
+			vecCopy.push_back(n);
+			deqCopy.push_back(n);
+		}
+
+		std::vector<int> vecSort(vecCopy);
+		double t5 = getTimeUs();
+		std::sort(vecSort.begin(), vecSort.end());
+		double t6 = getTimeUs();
+
+		std::vector<int> vecStable(vecCopy);
+		double t7 = getTimeUs();
+		std::stable_sort(vecStable.begin(), vecStable.end());
+		double t8 = getTimeUs();
+
+		std::deque<int> deqSort(deqCopy);
+		double t9 = getTimeUs();
+		std::sort(deqSort.begin(), deqSort.end());
+		double t10 = getTimeUs();
+
+		std::deque<int> deqStable(deqCopy);
+		double t11 = getTimeUs();
+		std::stable_sort(deqStable.begin(), deqStable.end());
+		double t12 = getTimeUs();
+
+		std::cout << "Time to process a range of " << vecSort.size()
+			<< " elements with std::sort(vector)         : " << (t6 - t5) << " us" << std::endl;
+		std::cout << "Time to process a range of " << deqSort.size()
+			<< " elements with std::sort(deque)           : " << (t10 - t9) << " us" << std::endl;
+		std::cout << "Time to process a range of " << vecStable.size()
+			<< " elements with std::stable_sort(vector)   : " << (t8 - t7) << " us" << std::endl;
+		std::cout << "Time to process a range of " << deqStable.size()
+			<< " elements with std::stable_sort(deque)    : " << (t12 - t11) << " us" << std::endl;
+	}
+	// */
 }
