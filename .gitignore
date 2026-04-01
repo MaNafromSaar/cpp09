@@ -1,0 +1,13 @@
+# Build artifacts
+*.o
+btc
+RPN
+PmergeMe
+
+# Subject files
+en.subject.pdf
+en.subject.pdf:Zone.Identifier
+subject.txt
+*.jpg
+*.jpg:Zone.Identifier
+cpp_09.tgz:Zone.Identifier
