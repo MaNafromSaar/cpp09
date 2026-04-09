@@ -252,11 +252,17 @@ void PmergeMe::run(int argc, char **argv)
 		std::cout << " " << vec[i];
 	std::cout << std::endl;
 
+	// Time includes data management (copying unsorted input) + sorting
+	std::vector<int> unsortedVec(vec);
+	std::deque<int> unsortedDeq(deq);
+
 	double t1 = getTimeUs();
+	vec = unsortedVec;
 	sortVector(vec);
 	double t2 = getTimeUs();
 
 	double t3 = getTimeUs();
+	deq = unsortedDeq;
 	sortDeque(deq);
 	double t4 = getTimeUs();
 

@@ -165,7 +165,7 @@ mm.count("alice");   // 2
 
 ## Container Adaptors
 
-These are **wrappers** around other containers. They restrict the interface to enforce a specific access pattern. You don't get iterators (which is why ex02 exists!).
+These are **wrappers** around other containers. They restrict the interface to enforce a specific access pattern. You don't get iterators (which is why cpp08/ex02 exists!).
 
 ### `std::stack`
 **What:** LIFO (Last In, First Out). Wraps `deque` by default.
